@@ -1,5 +1,5 @@
 <template>
-  <button class="cmp-switch" :class="{checked: value}" @click="toggle">
+  <button class="cmp-switch" :class="{'cmp-checked': value}" @click="toggle">
     <span></span>
   </button>
 </template>
@@ -47,7 +47,7 @@ $height2: $height - 4px;
     transition: all 0.25s;
   }
 
-  &.checked {
+  &.cmp-checked {
     background: #1890ff;
   
     > span {
@@ -60,7 +60,7 @@ $height2: $height - 4px;
       width: $height2 + 8px;
     }
   }
-  &.checked:active {
+  &.cmp-checked:active {
     > span {
       width: $height2 + 8px;
       margin-left: -8px;
