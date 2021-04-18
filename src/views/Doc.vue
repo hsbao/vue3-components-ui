@@ -62,8 +62,10 @@ export default {
     }
 
     main {
+      flex: 1;
       padding-top: 60px;
       padding-left: 156px;
+      padding-bottom: 30px;
       overflow-y: scroll;
       @media (max-width: 500px) {
         padding-top: 30px;

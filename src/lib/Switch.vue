@@ -1,12 +1,12 @@
 <template>
-  <button :class="{checked: value}" @click="toggle">
+  <button class="cmp-switch" :class="{checked: value}" @click="toggle">
     <span></span>
   </button>
 </template>
 
 <script lang="ts">
 export default {
-  name: 'SwitchCmp',
+  name: 'ElSwitch',
   props: {
     value: {
       type: Boolean,
@@ -24,10 +24,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $height: 22px;
 $height2: $height - 4px;
-button {
+.cmp-switch {
   width: $height * 2;
   height: $height;
   position: relative;
