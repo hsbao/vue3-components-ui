@@ -14,7 +14,7 @@
 
         <!-- dialog content -->
         <div class="cmp-dialog__body">
-          <slot />
+          <slot name="content" />
         </div>
 
         <!-- dialog footer -->
@@ -59,6 +59,12 @@ export default {
     confirmLoading: {
       type: Boolean,
       default: false
+    },
+    ok: {
+      type: Function,
+    },
+    cancel: {
+      type: Function,
     }
   },
   components: {
@@ -80,13 +86,24 @@ export default {
         loading.value = true
         disabled.value = true
       }
-      context.emit('ok')
+      if (props.ok) { 
+        // 通过dialog.show() 的方式打开
+        context.emit('update:visible', false) 
+        props.ok()
+      } else {
+        // 通过<Dialog /> 的方式使用
+        context.emit('ok') 
+      }
     }
 
     // 点击右上角关闭 / 点击取消按钮
     const close = () => {
-      context.emit('cancel')
-      context.emit('update:visible')
+      if (props.cancel) {
+        props.cancel()
+      } else {
+        context.emit('cancel')
+      }
+      context.emit('update:visible', false)
     }
 
     // 是否可以通过点击 modal 关闭 Dialog

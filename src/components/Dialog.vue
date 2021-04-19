@@ -11,11 +11,16 @@
     >
       <!-- v-slot只能作用在template上 -->
       <template v-slot:title>测试啊啊</template>
-      <div>
+      <template v-slot:content>
         <p>内容1</p>
         <p>内容22333</p>
-      </div>
+      </template>
     </ElDialog>
+
+    <br />
+    <br />
+    <br />
+    <ElButton type="primary" @click="onClickshowDialog">点击显示</ElButton>
   </div>
 </template>
 
@@ -23,6 +28,9 @@
 import { ref } from 'vue'
 import Dialog from '../lib/Dialog.vue'
 import Button from '../lib/Button.vue'
+
+import dialogMethod from '../lib/dialogMethod'
+
 export default {
   name: 'Dialog',
   components: {
@@ -42,10 +50,26 @@ export default {
     const onClickCancel = () => {
       console.log('close dialog')
     }
+    const onClickshowDialog = () => {
+      dialogMethod.show({
+        visible: true,
+        top: '35vh',
+        width: '45%',
+        title: 'Dialog Title',
+        content: 'Dialog content',
+        ok() {
+          console.log('点击确定按钮')
+        }, 
+        cancel() {
+          console.log('点击取消按钮')
+        }
+      })
+    }
     return {
       visible,
       onClickOk,
       onClickCancel,
+      onClickshowDialog,
       onClickChangeVisible
     }
   }
