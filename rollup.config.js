@@ -24,14 +24,15 @@ export default {
     },
   ],
   plugins: [
+    // vue插件要放在最前面，不然打包会报错
+    vue({
+      include: /\.vue$/,
+    }),
     scss({ include: /\.scss$/, sass: dartSass }),
     esbuild({
       include: /\.[jt]s$/,
       minify: process.env.NODE_ENV === 'production',
       target: 'es2015',
-    }),
-    vue({
-      include: /\.vue$/,
     }),
   ],
 }
