@@ -12,28 +12,28 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'default'
+      default: 'default',
     },
     size: {
       type: String,
-      default: 'normal'
+      default: 'normal',
     },
     round: {
       type: Boolean,
-      default: false
+      default: false,
     },
     plain: {
       type: Boolean,
-      default: false
+      default: false,
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     loading: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   setup(props) {
     const { type, size, round, plain, disabled } = props
@@ -43,11 +43,11 @@ export default {
         [`cmp-size--${size}`]: size,
         'is-round': round,
         'is-plain': plain,
-        'is-disabled': disabled
+        'is-disabled': disabled,
       }
     })
     return { classes }
-  }
+  },
 }
 </script>
 
@@ -106,7 +106,8 @@ $warning-color: #e6a23c;
 }
 
 @mixin hover-focus($bg-color) {
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background: $bg-color;
     border-color: $bg-color;
     color: #fff;
@@ -142,7 +143,8 @@ $warning-color: #e6a23c;
   & + & {
     margin-left: 8px;
   }
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: $primary-color;
     border-color: #c6e2ff;
     background-color: #ecf5ff;
@@ -155,7 +157,8 @@ $warning-color: #e6a23c;
     border-color: transparent;
     box-shadow: none;
     color: $primary-color;
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       color: lighten($primary-color, 10%);
     }
   }
@@ -164,7 +167,8 @@ $warning-color: #e6a23c;
     border-color: transparent;
     box-shadow: none;
     color: inherit;
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background: darken(white, 5%);
     }
   }
@@ -216,7 +220,7 @@ $warning-color: #e6a23c;
     @include btn-size;
     @include is-round;
     @include is-plain($danger-color, #fef0f0, #fbc4c4);
-    @include hover-focus(#f7898);
+    @include hover-focus(#f78989);
     @include is-disabled(#fab6b6);
     @include is-loading(white);
   }
@@ -229,7 +233,7 @@ $warning-color: #e6a23c;
     @include btn-size;
     @include is-round;
     @include is-plain($warning-color, #fdf6ec, #f5dab1);
-    @include hover-focus(#ebb56);
+    @include hover-focus(#ebb563);
     @include is-disabled(#f3d19e);
     @include is-loading(white);
   }
