@@ -1,82 +1,98 @@
 <template>
   <div class="topnav">
-    <span class="toggle-aside" @click="toggleAside"></span>
-    <div class="logo">
-      <router-link to="/">LOGO</router-link>
-    </div>
+    <router-link to="/" class="logo">
+      <svg class="icon">
+        <use xlink:href="#icon-vue"></use>
+      </svg>
+    </router-link>
     <ul class="menu">
-      <li class="menu-item">菜单1</li>
-      <li class="menu-item">菜单2</li>
+      <li>
+        <router-link to="/doc">文档</router-link>
+      </li>
     </ul>
+    <svg v-if="toggleMenuButtonVisible" class="toggleAside" @click="toggleMenu">
+      <use xlink:href="#icon-menu"></use>
+    </svg>
   </div>
 </template>
 
 <script lang="ts">
 import { inject, Ref } from 'vue'
-
 export default {
-  name: 'Topnav',
+  props: {
+    toggleMenuButtonVisible: {
+      type: Boolean,
+      default: false,
+    },
+  },
   setup() {
-    const asideVisible = inject<Ref<boolean>>('asideVisible')
-    const toggleAside = () => {
+    const asideVisible = inject<Ref<boolean>>('asideVisible') // get
+    const toggleMenu = () => {
       asideVisible.value = !asideVisible.value
     }
-
     return {
-      toggleAside,
+      toggleMenu,
     }
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.topnav {
-  position: relative;
-  padding: 0 24px;
-  width: 100%;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #fff;
-  border-bottom: 1px solid #999;
-  z-index: 10;
+$color: #007974;
 
-  .logo {
+.topnav {
+  color: $color;
+  display: flex;
+  padding: 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  justify-content: center;
+  align-items: center;
+
+  > .logo {
     max-width: 6em;
     margin-right: auto;
+
+    > svg {
+      width: 32px;
+      height: 32px;
+    }
   }
 
-  .menu {
+  > .menu {
     display: flex;
-    align-items: center;
+    white-space: nowrap;
     flex-wrap: nowrap;
 
-    .menu-item {
+    > li {
       margin: 0 1em;
     }
   }
 
-  .toggle-aside {
+  > .toggleAside {
+    width: 26px;
+    height: 26px;
     position: absolute;
+    left: 16px;
     top: 50%;
-    left: 24px;
-    display: none;
-    width: 24px;
-    height: 24px;
-    background: red;
     transform: translateY(-50%);
+    display: none;
   }
 
   @media (max-width: 500px) {
-    .toggle-aside {
-      display: inline-block;
+    > .menu {
+      display: none;
     }
-    .logo {
+
+    > .logo {
       margin: 0 auto;
     }
-    .menu {
-      display: none;
+
+    > .toggleAside {
+      display: inline-block;
     }
   }
 }

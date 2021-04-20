@@ -1,6 +1,6 @@
 <template>
   <!-- 使用teleport内置组件，把dialog挂载在body上 -->
-  <teleport to='body'>
+  <teleport to="body">
     <section class="cmp-dialog__wrapper" v-if="visible">
       <div class="cmp-modal" @click="closeOnModal"></div>
       <div class="cmp-dalog" :style="style">
@@ -21,7 +21,13 @@
         <div class="cmp-dialog__footer">
           <slot name="footer">
             <ElButton @click="close">取消</ElButton>
-            <ElButton type="primary" :loading="loading" :disabled="disabled" @click=ok>确定</ElButton>
+            <ElButton
+              type="primary"
+              :loading="loading"
+              :disabled="disabled"
+              @click="ok"
+              >确定</ElButton
+            >
           </slot>
         </div>
       </div>
@@ -31,44 +37,44 @@
 
 <script lang="ts">
 import { computed, ref, watchEffect } from 'vue'
-import Button from './Button.vue'
+import Button from '../button/Button.vue'
 export default {
   name: 'ElDialog',
   props: {
     visible: {
       type: Boolean,
       default: false,
-      required: true
+      required: true,
     },
     title: {
       type: String,
-      default: '标题'
+      default: '标题',
     },
     top: {
       type: String,
-      default: '15vh'
+      default: '15vh',
     },
     width: {
       type: String,
-      default: '50%'
+      default: '50%',
     },
     closeOnClickModal: {
       type: Boolean,
-      default: true
+      default: true,
     },
     confirmLoading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     ok: {
       type: Function,
     },
     cancel: {
       type: Function,
-    }
+    },
   },
   components: {
-    ElButton: Button
+    ElButton: Button,
   },
   setup(props, context) {
     const { top, width, closeOnClickModal, confirmLoading } = props
@@ -86,13 +92,13 @@ export default {
         loading.value = true
         disabled.value = true
       }
-      if (props.ok) { 
+      if (props.ok) {
         // 通过dialog.show() 的方式打开
-        context.emit('update:visible', false) 
+        context.emit('update:visible', false)
         props.ok()
       } else {
         // 通过<Dialog /> 的方式使用
-        context.emit('ok') 
+        context.emit('ok')
       }
     }
 
@@ -124,9 +130,9 @@ export default {
       disabled,
       ok,
       close,
-      closeOnModal
+      closeOnModal,
     }
-  }
+  },
 }
 </script>
 
@@ -174,7 +180,7 @@ $font-color: #303133;
         width: 24px;
         height: 24px;
         text-align: right;
-        color:$font-color;
+        color: $font-color;
         cursor: pointer;
       }
     }
