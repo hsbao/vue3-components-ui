@@ -7,6 +7,7 @@ import ButtonDemo from '../components/button/ButtonDemo.vue'
 import DialogDemo from '../components/dialog/DialogDemo.vue'
 import TabsDemo from '../components/tabs/TabsDemo.vue'
 import InputDemo from '../components/input/InputDemo.vue'
+import TagDemo from '../components/tag/TagDemo.vue'
 
 import Markdown from '../components/Markdown.vue'
 import intro from '../markdown/intro.md'
@@ -32,6 +33,7 @@ export const router = createRouter({
         { path: 'dialog', component: DialogDemo },
         { path: 'tabs', component: TabsDemo },
         { path: 'input', component: InputDemo },
+        { path: 'tag', component: TagDemo },
       ],
     },
   ],
